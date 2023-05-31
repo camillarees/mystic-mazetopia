@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;  
+}
+header {
+    display: flex;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #0e6148;
+    box-shadow: 8px 8px 16px 8px rgba(0, 0, 0, 0.295);
+    text-align: center;
+}
+header > h1 {
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 4px;
+    font-size: 36px;
+    color: #ebebeb;
+}
+.drop{
+    display: inline-block;
+    color: #ebebeb;
+    background-color: #0d0d0d00;
+    border-radius: 10px;
+    border-color: #ffffff00;
+    font-size: 24px;
+    padding: 10px;
+}
+.drop:hover {
+    color: #b9b9b9;
+}
+#dropdown{
+    position: relative;
+    display: inline-block;
+    padding: 20px;
+}
+#dropdown:hover .menu-content{
+    visibility: visible;
+}
+
+nav {
+    padding: 40px;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    display: inline;
+    margin-right: 10px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #ebebeb;
+  }
+  
+  a:hover {
+    color: rgb(89, 89, 89);
+  }
+
+.menu-content{
+    visibility: hidden;
+    position: absolute;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.menu-content a{
+    color: #ebebeb;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: Andale Mono, monospace;
+}
+.menu-content {
+    width: 300px;
+    background-color: #929292;
+}
+
+.menu-content a:hover {
+    text-decoration: underline;
+}
+body {
+    background-image: url(../assets/splash.jpg);
+    background-size: 100%;
+}
+
+#play-button {
+    margin-top: 20rem;
+    display: block;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 60px;
+    text-align: center;
+    
+    color: #ebebeb;
+    font-size: 36px;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 3px;;
+    font-family: 'Bebas Neue', cursive;
+    
+    background: linear-gradient(90deg, rgb(4, 173, 52), rgb(0, 22, 116), rgb(6, 87, 237), rgb(5, 179, 210), rgb(4, 173, 52));
+    background-size: 400%;
+    border-radius: 30px;
+    margin-left: 50%;
+    
+    border: none;
+  }
+#play-button:hover {
+    animation: animate 8s linear infinite;
+}
+@keyframes animate {
+    0% {
+        background-position: 0%;
+}
+    100% {
+        background-position: 400%;
+}
+}
+ #play-button:before {
+    background: linear-gradient(45deg, #f15523, #ef3224, #7c3697);
+    background-size: 400%;
+    border: none;
+    transition: 0.5%;
+  }
+#play-button:hover:before {
+    filter: blur(20px);
+    opacity: 1;
+    animation: animate 8s linear infinite;
+  }
+
+#game-description {
+    display: block;
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#type {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 36px;
+    color: #ebebeb; 
+}
+
+.about-developer-container > img {
+    width: 25%;
+    height:90%;
+    object-fit:cover;
+    margin-left: 50px;
+    -webkit-box-reflect:below 2px linear-gradient(transparent, transparent, #0004);
+    transform:perspective(800px) rotateY(25deg);
+    transition:0.5s;
+}
+#containerSection {
+    padding-top: 5rem;
+    padding-bottom: 8rem;
+}
+.about-developer-container {
+    display: block;
+    max-width:1200px;
+    max-height:550px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.about-developer-container:hover img {
+    opacity:0.3;
+}
+.about-developer-container img:hover {
+    transform:perspective(800px) rotateY(0deg);
+    opacity:1;
+}
+footer > p {
+    text-align: center;
+    color: #ebebeb;
+}
+#one {
+    margin-left: 5.8rem;
+}
