@@ -28,13 +28,23 @@ renderNewImage();
 
 function renderNewRiddle() {
   let riddleElement = document.getElementById('riddle');
+  let storedLives = localStorage.getItem('lives');
+  let storedRiddle = localStorage.getItem('currentRiddle');
 
-  // eslint-disable-next-line no-undef
-  let randomIndex = Math.floor(Math.random() * riddleArr.length);
-  // eslint-disable-next-line no-undef
-  currentRiddle = riddleArr[randomIndex];
+  lives = storedLives ? parseInt(storedLives) : 3;
+  currentRiddle = storedRiddle ? JSON.parse(storedRiddle) : getRandomRiddle();
 
   riddleElement.textContent = currentRiddle.dialogue;
+}
+
+function getRandomRiddle() {
+  let randomIndex = Math.floor(Math.random() * riddleArr.length);
+  return riddleArr[randomIndex];
+}
+
+function saveGameState() {
+  localStorage.setItem('lives', lives.toString());
+  localStorage.setItem('currentRiddle', JSON.stringify(currentRiddle));
 }
 
 // function checkWinCondition() {
@@ -51,6 +61,8 @@ function checkAnswer() {
   if (playerAnswer === currentRiddle.answer) {
     // Correct answer
     renderNewImage();
+    currentRiddle = getRandomRiddle();
+    saveGameState();
     renderNewRiddle();
     playerAnswerInput.value = '';
   } else {
