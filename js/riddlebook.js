@@ -186,8 +186,8 @@ const riddle30 = new Riddle(
   'riddle30'
 );
 
-let RiddleArr = [];
-RiddleArr.push(
+let riddleArr = [];
+riddleArr.push(
   riddle1,
   riddle2,
   riddle3,
