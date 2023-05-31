@@ -20,3 +20,17 @@ function renderNewImage() {
 }
 
 renderNewImage();
+
+function renderNewRiddle() {
+  let riddleElement = document.getElementById('riddle');
+
+  // eslint-disable-next-line no-undef
+  let randomIndex = Math.floor(Math.random() * riddleArr.length);
+  // eslint-disable-next-line no-undef
+  let randomRiddle = riddleArr[randomIndex];
+
+  riddleElement.textContent = randomRiddle.dialogue;
+
+}
+
+window.addEventListener('DOMContentLoaded', renderNewRiddle);
