@@ -17,9 +17,10 @@ let img = document.getElementById('asset');
 let playerAnswerInput = document.getElementById('playerAnswer');
 let lives = 3;
 let currentRiddle;
+let answeredRiddles = 0;
 
 function renderNewImage() {
-  img.src = imgUrlArr[0];
+  img.src = imgUrlArr[answeredRiddles];
 }
 
 renderNewImage();
@@ -37,9 +38,13 @@ function renderNewRiddle() {
 
 function getRandomRiddle() {
   // eslint-disable-next-line no-undef
-  let randomIndex = Math.floor(Math.random() * riddleArr.length);
+  let remainingRiddles = riddleArr.filter(riddle => !riddle.answered);
   // eslint-disable-next-line no-undef
-  return riddleArr[randomIndex];
+  let randomIndex = Math.floor(Math.random() * remainingRiddles.length);
+  let randomRiddle = remainingRiddles[randomIndex];
+  randomRiddle.answered = true;
+  answeredRiddles++;
+  return randomRiddle;
 }
 
 function saveGameState() {
@@ -47,16 +52,9 @@ function saveGameState() {
   localStorage.setItem('currentRiddle', JSON.stringify(currentRiddle));
 }
 
-// function checkWinCondition() {
-//     let storyElement = document.getElementById('storyText');
-
-//     if (usedRiddles.length === 10) {
-//       alert('You have completed the game!');
-//     }
-// }
-
 function checkAnswer() {
   let playerAnswer = playerAnswerInput.value.trim().toLowerCase();
+  let storyElement = document.getElementById('storyText');
 
   if (playerAnswer === currentRiddle.answer) {
     // Correct answer
@@ -65,19 +63,42 @@ function checkAnswer() {
     saveGameState();
     renderNewRiddle();
     playerAnswerInput.value = '';
+
+    checkWinCondition();
   } else {
     // Incorrect answer
     lives--;
     if (lives === 0) {
       // Player has no more lives
-      alert('Game Over!');
+      storyElement.textContent = 'Game Over!';
       // You can add additional code here to handle the game over scenario
     } else {
       // Player has remaining lives
-      alert(`Incorrect answer! You have ${lives} lives remaining.`);
+      storyElement.textContent = `Incorrect answer! You have ${lives} lives remaining.`;
     }
   }
 }
+
+function checkWinCondition() {
+  let storyElement = document.getElementById('storyText');
+  if (answeredRiddles === imgUrlArr.length) {
+    storyElement.textContent = 'Congratulations! You have completed the game!';
+  }
+}
+
+function resetGame() {
+  lives = 3;
+  currentRiddle = null;
+  answeredRiddles = 0;
+
+  localStorage.removeItem('lives');
+  localStorage.removeItem('currentRiddle');
+
+  renderNewImage();
+  renderNewRiddle();
+}
+
+document.getElementById('resetButton').addEventListener('click', resetGame);
 
 // function getHint() {
 //   let hintElement = document.getElementById('hint');
