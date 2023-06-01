@@ -116,18 +116,6 @@ function resetGame() {
 
 document.getElementById('resetButton').addEventListener('click', resetGame);
 
-// function getHint() {
-//   let hintElement = document.getElementById('hint');
-//   let storedRiddle = localStorage.getItem('currentRiddle');
-//   if (storedRiddle) {
-//     currentRiddle = JSON.parse(storedRiddle);
-//     hintElement.textContent = currentRiddle.hint;
-//   }
-// }
-
-// document.getElementById('getHint').addEventListener('click', getHint);
-// console.log(getHint());
-
 document.getElementById('submit').addEventListener('click', checkAnswer);
 window.addEventListener('DOMContentLoaded', renderNewRiddle);
 

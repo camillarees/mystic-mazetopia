@@ -1,6 +1,92 @@
-#asset {
-    display: block;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Questrial&family=Righteous&family=Shrikhand&family=Zeyada&display=swap');
+
+header {
+    background-color: #0e6148; 
 }
+
+.button {
+    margin: 10px;
+    border: none;
+    padding: 15px;
+    border-radius: 30px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 22px;
+    color: #ebebeb;
+    background-color: #0e6148;
+
+}
+
+main {
+    display: flex;
+    background-color:#0e6148;
+}
+
+.gameWindow {
+    width: calc(66.67% - 40px);
+    margin: 20px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+#asset {
+    border-radius: 30px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.textWindow {
+    width: calc(33.33% - 40px);
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+#storyText {
+    line-height: 27px;
+    order: -1;
+}
+
+
+p {
+ color: #ebebeb;
+ font-size: 19px;
+}
+
+.riddleContainer {
+    background-image: url(../assets/riddle.jpg);
+    background-size: 300px;
+    padding: none;
+    margin-bottom: 20px;
+    border-radius: 30px;
+}
+
+h4 {
+    color: #212121;
+    font-family: 'Zeyada', cursive;
+    font-size: 40px;
+    line-height: 45px;
+    margin: 10px;
+    padding: 10px;
+}
+
+
+input {
+    margin: none;
+    padding: 15px;
+    border: none;
+    border-radius: 30px;
+    font-size: 20px;
+    background-color: #009669;
+}
+
+input:hover {
+    font-size: 22px;
+}
+
+input::placeholder {
+    color: #0e6148;
+}
+

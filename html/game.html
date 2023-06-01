@@ -12,19 +12,22 @@
 </head>
 <body>
     <header>
-        <button id="back"><strong>Back home</strong></button>
-        <button id="resetButton" onclick=""><strong>Reset</strong></button>
+        <button class="button" id="back"><strong>Back home</strong></button>
+        <button class="button" id="resetButton" onclick=""><strong>Reset</strong></button>
     </header>
     <main>
-        <section id="gameWindow">
-            <img id="asset" src="" alt="">
-            <p id="storyText">Story</p>
+        <section class="textWindow">
+            <p id="lives">Lives</p>
+            <p id="storyText"></p>
+            <div class="riddleContainer">
             <h4 id="riddle"></h4>
+            </div>
+            <input id="playerAnswer" type="text" placeholder="Make your guess" ></input>
+            <button class="button" id="submit" onclick="">Submit</button>
         </section>
-        <input id="playerAnswer" type="text" placeholder="Make your guess" ></input>
-        <button id="submit" onclick="">Submit</button>
-        <button id="getHint" onclick="">Get Hint</button>
-        <p id="hint"></p>
+        <section class="gameWindow">
+            <img id="asset" src="" alt="">
+        </section>
     </main>
     <footer>
     </footer>
