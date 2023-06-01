@@ -20,6 +20,7 @@ header > h1 {
     letter-spacing: 4px;
     font-size: 36px;
     color: #ebebeb;
+    align-self: center;
 }
 .drop{
     display: inline-block;
@@ -58,12 +59,14 @@ nav {
   }
   
   a {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 26px;
     text-decoration: none;
     color: #ebebeb;
   }
   
   a:hover {
-    color: rgb(89, 89, 89);
+    color: rgb(5, 168, 121);
   }
 
 .menu-content{
@@ -150,15 +153,20 @@ body {
     color: #ebebeb; 
 }
 
+
 .about-developer-container > img {
-    width: 25%;
-    height:90%;
-    object-fit:cover;
-    margin-left: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    max-height: 550px;
+    margin-left: auto;
+    margin-right: auto;
     -webkit-box-reflect:below 2px linear-gradient(transparent, transparent, #0004);
     transform:perspective(800px) rotateY(25deg);
     transition:0.5s;
 }
+
 #containerSection {
     padding-top: 5rem;
     padding-bottom: 8rem;
@@ -180,7 +188,4 @@ body {
 footer > p {
     text-align: center;
     color: #ebebeb;
-}
-#one {
-    margin-left: 5.8rem;
 }
