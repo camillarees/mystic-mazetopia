@@ -72,33 +72,41 @@ function saveGameState() {
 function checkAnswer() {
   let playerAnswer = playerAnswerInput.value.trim().toLowerCase();
   let storyElement = document.getElementById('storyText');
+  let livesElement = document.getElementById('lives');
 
   if (playerAnswer === currentRiddle.answer) {
     // Correct answer
     renderNewImageAndText();
-    currentRiddle = getRandomRiddle();
-    saveGameState();
-    renderNewRiddle();
     playerAnswerInput.value = '';
 
     checkWinCondition();
+
+    if(answeredRiddles !== imgUrlArr.length)
+      currentRiddle = getRandomRiddle();
+    saveGameState();
+    renderNewRiddle();
+
   } else {
     // Incorrect answer
     lives--;
     if (lives === 0) {
       // Player has no more lives
       storyElement.textContent = 'Game Over!';
+      livesElement.textContent = `Lives: ${lives}`;
       // You can add additional code here to handle the game over scenario
     } else {
       // Player has remaining lives
       storyElement.textContent = `Incorrect answer! You have ${lives} lives remaining.`;
+      livesElement.textContent = `Lives: ${lives}`;
     }
   }
 }
 
 function checkWinCondition() {
+  let riddleElement = document.getElementById('riddle');
   if (answeredRiddles === imgUrlArr.length) {
-    storyElement.textContent = 'Congratulations! You have completed the game!';
+    storyElement.textContent = 'Congratulations! You have successfully navigated through the maze and emerged victorious! Well done!';
+    riddleElement.textContent = '';
   }
 }
 

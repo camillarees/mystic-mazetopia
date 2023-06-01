@@ -83,7 +83,7 @@ input {
 }
 
 input:hover {
-    font-size: 22px;
+    background-color: #01c48a;
 }
 
 input::placeholder {
