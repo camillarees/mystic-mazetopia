@@ -13,17 +13,34 @@ let imgUrlArr =
   '../assets/page10.jpg'
 ];
 
+let storyArr =
+['You find yourself lost in an enchanted maze, surrounded by towering hedges and mysterious whispers. Your only hope for finding a way out is by solving riddles that will reveal the correct path or magically open new routes before you.',
+  'As you venture deeper into the maze, the air becomes heavy with enchantment, and a sense of both excitement and trepidation fills your heart.',
+  'Shadows dance along the winding paths, teasing your senses and obscuring the true direction. Each riddle you solve brings you closer to unraveling the maze\'s secrets.',
+  'The ancient stone walls whisper tales of forgotten explorers who succumbed to the maze\'s bewitching allure. Will you be able to break the cycle and find your way back to the realm of light?',
+  'A flickering lantern casts eerie light upon a moss-covered door. Only by answering the riddle etched upon it can you unlock the gateway to the next stage of your journey.',
+  'The echoes of your footsteps mingle with the distant rustling of unseen creatures. With each correct answer, the maze seems to subtly shift, guiding you towards the elusive exit.',
+  'Moonlight filters through the dense foliage, illuminating a hidden inscription on an ancient stone tablet. Deciphering its cryptic message holds the key to uncovering the maze\'s final challenge.',
+  'Your heart quickens as you approach a grand archway adorned with intricate symbols. Only by solving the riddles embedded within its design can you break the enchantment that binds you to this labyrinthine realm.',
+  'The scent of wildflowers mingles with the musty fragrance of age-old secrets. Every riddle solved brings you closer to a moment of revelation, where the maze\'s purpose and origin will be unveiled.',
+  'A glimmer of hope flickers in the distance, beckoning you forward. Emerging from the maze\'s depths, you stand at the threshold of the final tunnel, where a blinding light illuminates the path to freedom and triumph.'
+];
+
+
 let img = document.getElementById('asset');
+let storyElement = document.getElementById('storyText');
 let playerAnswerInput = document.getElementById('playerAnswer');
 let lives = 3;
 let currentRiddle;
 let answeredRiddles = 0;
 
-function renderNewImage() {
+function renderNewImageAndText() {
   img.src = imgUrlArr[answeredRiddles];
+  storyElement.textContent = storyArr[answeredRiddles];
+
 }
 
-renderNewImage();
+renderNewImageAndText();
 
 function renderNewRiddle() {
   let riddleElement = document.getElementById('riddle');
@@ -58,7 +75,7 @@ function checkAnswer() {
 
   if (playerAnswer === currentRiddle.answer) {
     // Correct answer
-    renderNewImage();
+    renderNewImageAndText();
     currentRiddle = getRandomRiddle();
     saveGameState();
     renderNewRiddle();
@@ -80,7 +97,6 @@ function checkAnswer() {
 }
 
 function checkWinCondition() {
-  let storyElement = document.getElementById('storyText');
   if (answeredRiddles === imgUrlArr.length) {
     storyElement.textContent = 'Congratulations! You have completed the game!';
   }
@@ -94,7 +110,7 @@ function resetGame() {
   localStorage.removeItem('lives');
   localStorage.removeItem('currentRiddle');
 
-  renderNewImage();
+  renderNewImageAndText();
   renderNewRiddle();
 }
 
