@@ -17,8 +17,6 @@ let img = document.getElementById('asset');
 let playerAnswerInput = document.getElementById('playerAnswer');
 let lives = 3;
 let currentRiddle;
-// let usedRiddles = [];
-// let remainingRiddles = riddleArr.slice();
 
 function renderNewImage() {
   img.src = imgUrlArr[0];
@@ -38,7 +36,9 @@ function renderNewRiddle() {
 }
 
 function getRandomRiddle() {
+  // eslint-disable-next-line no-undef
   let randomIndex = Math.floor(Math.random() * riddleArr.length);
+  // eslint-disable-next-line no-undef
   return riddleArr[randomIndex];
 }
 
@@ -80,9 +80,18 @@ function checkAnswer() {
 }
 
 // function getHint() {
-//     let hintElement = document.getElementById('hint');
+//   let hintElement = document.getElementById('hint');
+//   let storedRiddle = localStorage.getItem('currentRiddle');
+//   if (storedRiddle) {
+//     currentRiddle = JSON.parse(storedRiddle);
+//     hintElement.textContent = currentRiddle.hint;
+//   }
 // }
 
+// document.getElementById('getHint').addEventListener('click', getHint);
+// console.log(getHint());
+
 document.getElementById('submit').addEventListener('click', checkAnswer);
-// document.getElementById('getHint').addEventListener('click', checkAnswer);
 window.addEventListener('DOMContentLoaded', renderNewRiddle);
+
+
