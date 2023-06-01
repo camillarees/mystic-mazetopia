@@ -26,7 +26,7 @@ let storyArr =
   'A glimmer of hope flickers in the distance, beckoning you forward. Emerging from the maze\'s depths, you stand at the threshold of the final tunnel, where a blinding light illuminates the path to freedom and triumph.'
 ];
 
-
+let back = document.getElementById('back');
 let img = document.getElementById('asset');
 let storyElement = document.getElementById('storyText');
 let playerAnswerInput = document.getElementById('playerAnswer');
@@ -113,6 +113,12 @@ function resetGame() {
   renderNewImageAndText();
   renderNewRiddle();
 }
+
+function backToHome (){
+  window.location.href='index.html';
+}
+
+back.addEventListener('click', backToHome);
 
 document.getElementById('resetButton').addEventListener('click', resetGame);
 
