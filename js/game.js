@@ -30,13 +30,14 @@ let back = document.getElementById('back');
 let img = document.getElementById('asset');
 let storyElement = document.getElementById('storyText');
 let playerAnswerInput = document.getElementById('playerAnswer');
+let livesElement = document.getElementById('lives');
 let lives = 3;
 let currentRiddle;
 let answeredRiddles = 0;
 
 function renderNewImageAndText() {
-  img.src = imgUrlArr[answeredRiddles];
-  storyElement.textContent = storyArr[answeredRiddles];
+  img.src = imgUrlArr[parseInt(localStorage.getItem('answeredRiddles'))];
+  storyElement.textContent = storyArr[parseInt(localStorage.getItem('answeredRiddles'))];
 
 }
 
@@ -44,29 +45,37 @@ renderNewImageAndText();
 
 function renderNewRiddle() {
   let riddleElement = document.getElementById('riddle');
-  let storedLives = localStorage.getItem('lives');
   let storedRiddle = localStorage.getItem('currentRiddle');
 
-  lives = storedLives ? parseInt(storedLives) : 3;
+  lives = parseInt(localStorage.getItem('lives')) || 3;
   currentRiddle = storedRiddle ? JSON.parse(storedRiddle) : getRandomRiddle();
 
   riddleElement.textContent = currentRiddle.dialogue;
+  livesElement.textContent = `Lives: ${lives}`;
 }
 
 function getRandomRiddle() {
   // eslint-disable-next-line no-undef
   let remainingRiddles = riddleArr.filter(riddle => !riddle.answered);
+  let storedAnsweredRiddles = localStorage.getItem('answeredRiddles');
   // eslint-disable-next-line no-undef
   let randomIndex = Math.floor(Math.random() * remainingRiddles.length);
+  console.log(randomIndex);
   let randomRiddle = remainingRiddles[randomIndex];
   randomRiddle.answered = true;
+  answeredRiddles = storedAnsweredRiddles ? parseInt(storedAnsweredRiddles) : 0;
   answeredRiddles++;
   return randomRiddle;
 }
 
 function saveGameState() {
+  // eslint-disable-next-line no-undef
+  let remainingRiddles = riddleArr.filter(riddle => !riddle.answered);
+
   localStorage.setItem('lives', lives.toString());
   localStorage.setItem('currentRiddle', JSON.stringify(currentRiddle));
+  localStorage.setItem('answeredRiddles', answeredRiddles.toString());
+  localStorage.setItem('remainingRiddles', JSON.stringify(remainingRiddles));
 }
 
 function checkAnswer() {
@@ -76,7 +85,6 @@ function checkAnswer() {
 
   if (playerAnswer === currentRiddle.answer) {
     // Correct answer
-    renderNewImageAndText();
     playerAnswerInput.value = '';
 
     checkWinCondition();
@@ -84,15 +92,18 @@ function checkAnswer() {
     if(answeredRiddles !== imgUrlArr.length)
       currentRiddle = getRandomRiddle();
     saveGameState();
+    renderNewImageAndText();
     renderNewRiddle();
 
   } else {
     // Incorrect answer
     lives--;
-    if (lives === 0) {
+    saveGameState();
+    if (lives <= 0) {
       // Player has no more lives
-      storyElement.textContent = 'Game Over!';
+      storyElement.textContent = 'Game Over! Click RESET to play again';
       livesElement.textContent = `Lives: ${lives}`;
+      lose();
       // You can add additional code here to handle the game over scenario
     } else {
       // Player has remaining lives
@@ -114,12 +125,26 @@ function resetGame() {
   lives = 3;
   currentRiddle = null;
   answeredRiddles = 0;
+  img.src = imgUrlArr[0];
+  storyElement.textContent = storyArr[0];
 
   localStorage.removeItem('lives');
   localStorage.removeItem('currentRiddle');
+  localStorage.removeItem('answeredRiddles');
+  localStorage.removeItem('remainingRiddles');
 
-  renderNewImageAndText();
+  // eslint-disable-next-line no-undef
+  riddleArr.forEach(riddle => {
+    riddle.answered = false;
+  });
+
   renderNewRiddle();
+}
+
+function lose() {
+  localStorage.removeItem('lives');
+  localStorage.removeItem('currentRiddle');
+  localStorage.removeItem('answeredRiddles');
 }
 
 function backToHome (){
@@ -129,7 +154,6 @@ function backToHome (){
 back.addEventListener('click', backToHome);
 
 document.getElementById('resetButton').addEventListener('click', resetGame);
-
 document.getElementById('submit').addEventListener('click', checkAnswer);
 window.addEventListener('DOMContentLoaded', renderNewRiddle);
 
