@@ -32,8 +32,8 @@ main {
 
 #asset {
     border-radius: 30px;
-    max-width: 100%;
     max-height: 100%;
+    max-width: 100%;
 }
 
 .textWindow {
@@ -56,7 +56,7 @@ p {
 }
 
 .riddleContainer {
-    background-image: url(../assets/riddle.jpg);
+    background-image: url(../assets/riddle.webp);
     background-size: 300px;
     padding: none;
     margin-bottom: 20px;

@@ -1,16 +1,16 @@
 'use strict';
 
 let imgUrlArr =
-[ 'assets/page1.jpg',
-  'assets/page2.jpg',
-  'assets/page3.jpg',
-  'assets/page4.jpg',
-  'assets/page5.jpg',
-  'assets/page6.jpg',
-  'assets/page7.jpg',
-  'assets/page8.jpg',
-  'assets/page9.jpg',
-  'assets/page10.jpg'
+[ 'assets/page1.webp',
+  'assets/page2.webp',
+  'assets/page3.webp',
+  'assets/page4.webp',
+  'assets/page5.webp',
+  'assets/page6.webp',
+  'assets/page7.webp',
+  'assets/page8.webp',
+  'assets/page9.webp',
+  'assets/page10.webp'
 ];
 
 let storyArr =
@@ -36,10 +36,11 @@ let currentRiddle;
 let answeredRiddles = 0;
 
 function renderNewImageAndText() {
-  img.src = imgUrlArr[parseInt(localStorage.getItem('answeredRiddles'))];
-  storyElement.textContent = storyArr[parseInt(localStorage.getItem('answeredRiddles'))];
-
+  let answeredRiddles = parseInt(localStorage.getItem('answeredRiddles')) || 0;
+  img.src = imgUrlArr[answeredRiddles];
+  storyElement.textContent = storyArr[answeredRiddles];
 }
+
 
 renderNewImageAndText();
 
